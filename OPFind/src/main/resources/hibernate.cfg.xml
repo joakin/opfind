@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+		
+		<!-- With Spring, the DataSource's properties will be overriden by datasource bean -->
+		<!-- This configuration it's only usefull to Hibernate Tools Console -->
+		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="hibernate.connection.username">sa</property>
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url">jdbc:hsqldb:file:/home/alex/src/workspace/autentia-hibernate-search/target/db/hsqldb/hibernate;shutdown=true</property>
+		<!-- /This configuration it's only usefull to Hibernate Tools Console -->
+
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.show_sql">true</property>
+		
+		<property name="hibernate.search.default.directory_provider">org.hibernate.search.store.RAMDirectoryProvider</property>
+<!--		<property name="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</property>-->
+<!--		<property name="hibernate.search.default.indexBase">/home/alex/src/workspace/autentia-hibernate-search/target/indexes</property>-->
+		
+		<mapping class="com.autentia.hibernate.search.Book"/>
+	</session-factory>
+</hibernate-configuration>
