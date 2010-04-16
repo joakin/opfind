@@ -69,6 +69,11 @@ public class GenericDao extends HibernateDaoSupport implements Dao {
 	}
 
 	@Transactional
+	public void delete(Object entity) {
+		  getHibernateTemplate().delete(entity);
+	}
+	
+	@Transactional
 	public void persist(Object[] entities) {
 		for (Object entity : entities) {
 			persist(entity);
@@ -92,7 +97,7 @@ public class GenericDao extends HibernateDaoSupport implements Dao {
 		final T entity = (T) getHibernateTemplate().get(entityClass, id);
 		return entity;
 	}
-
+	
 	@Transactional(readOnly = true)
 	public <T> List<T> find(String hql) {
 		final List<T> entities = getHibernateTemplate().find(hql);

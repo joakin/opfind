@@ -13,6 +13,8 @@ public interface Dao {
 	public <T> List<T> findByFullTextAndSort(Class<T> entityClass, String[] entityFields, String textToFind,Sort sort);
 
 	public void persist(Object entity);
+	
+	public void delete(Object entity);
 
 	public void persist(Object[] entities);
 
