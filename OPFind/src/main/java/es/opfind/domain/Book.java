@@ -1,4 +1,4 @@
-package com.autentia.hibernate.search;
+package es.opfind.domain;
 
 import java.util.Date;
 
