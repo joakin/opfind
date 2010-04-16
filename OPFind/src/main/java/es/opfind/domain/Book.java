@@ -19,7 +19,7 @@ import org.hibernate.search.annotations.Resolution;
 @Indexed
 public class Book {
 
-	static final String[] FULL_TEXT_FIELDS = { "title", "summary", "publicationDate" };
+	public static final String[] FULL_TEXT_FIELDS = { "title", "summary", "publicationDate" };
 	
 	@SuppressWarnings("unused")
 	@Id
