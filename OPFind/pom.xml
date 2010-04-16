@@ -4,15 +4,15 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.autentia.hibernate.search</groupId>
-	<artifactId>autentia-hibernate-search</artifactId>
+	<groupId>es.opfind</groupId>
+	<artifactId>opfind</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>autentia-hibernate-search</name>
-	<url>http://maven.apache.org</url>
+	<name>OPFind</name>
+	<url>http://www.opfind.org</url>
 	<description>
-		Proyecto de ejemplo de hibernate-search, creado por www.autentia.com, para www.adictosaltrabajo.com
+		Poner una descripcion
 	</description>
 
 	<build>
@@ -96,22 +96,8 @@
 			<version>1.0</version>
 		</dependency>
 
-		<!-- ========= ICEfaces ========= -->
-		<dependency>
-			<groupId>org.icefaces</groupId>
-			<artifactId>icefaces</artifactId>
-			<version>1.7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.icefaces</groupId>
-			<artifactId>icefaces-comps</artifactId>
-			<version>1.7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.icefaces</groupId>
-			<artifactId>icefaces-facelets</artifactId>
-			<version>1.7.0</version>
-		</dependency>
+		<!-- ========= Java Server Faces ========= -->
+		
 
 		<!-- ========== Test ========== -->
 		<dependency>
