@@ -25,7 +25,7 @@
 	-->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:hsqldb:file:/home/alex/src/workspace/autentia-hibernate-search/target/db/hsqldb/hibernate;shutdown=true" />
+		<property name="url" value="jdbc:hsqldb:file:/home/sorack/IDE/workspaces/opfind/opfind/target/db/hsqldb/hibernate;shutdown=true" />
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
