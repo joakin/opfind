@@ -23,6 +23,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.Type;
@@ -37,6 +39,7 @@ import es.opfind.util.StringUtils;
 
 @Entity
 @Indexed
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class CivilJob implements Serializable {
 
 	public static final String[] FULL_TEXT_FIELDS = { "description", "fullHtml" };
