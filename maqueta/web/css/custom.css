@@ -1,0 +1,71 @@
+body{background:white url(../images/headbg.jpg) left -1px repeat-x;}
+body,input{font-family: Georgia,Times,"Times New Roman";font-size: 19px;}
+#wrapper{background: white url(../images/bg.jpg) top left no-repeat;overflow: hidden;}
+#header{height:160px}
+#header>h1>a,#header>h2>a{/**/text-indent: -9999px;/**/position:absolute;top:0;left:10;height:150px;width:360px;display: block}
+#header>h2>a{left:370px;width:570px;}
+#busca{height:160px;position: relative;}
+#busca>input{position:absolute;top:53px;left:50px;height:68px;width:670px;font-size:50px;text-align: center;color:#ccc;border:none;background-color:transparent;background-image: none;}
+#busca>input:focus,#busca>input:hover{color:black;}
+#busca>button{height:93px;left:725px;position:absolute;top:45px;width:90px;border:none;background-color:transparent;background-image: none;text-indent: -9999px;}
+#busca>button:hover{cursor: pointer}
+#ultconv, #share>h3, #share a, #subscribe>a, #about>h3, #aboutimgs>a, #creators>a{text-indent: -9999px;background: transparent url(../images/spr.jpg) top left no-repeat;}
+h3,#subscribe>a{margin:30px auto;}
+#creators>h4,#aboutimgs>a,#creators>a{margin:20px auto;}
+#ultconv{width:426px;height: 43px;}
+#share>h3{width: 277px; height: 60px;background-position:0 -96px;margin-bottom: 15px;}
+#share>	{list-style-type: none;list-style-position: inside;}
+#share li{display: inline-block;margin:0 0 0 11px;}
+#share a{display: block;width: 35px;height: 35px;background-position:0 -160px;}
+a#btmail{background-position:0 -160px;}
+a#btfacebook{background-position:-52px -160px;}
+a#btstumble{background-position:-102px -160px;}
+a#bttwitter{background-position:-152px -160px;}
+a#btbuzz{background-position:-202px -160px;}
+a#btdelicious{background-position:-252px -160px;}
+#subscribe>a{display: block;width: 273px;height: 46px;background-position:0 -49px;}
+#about>h3{width: 214px;height: 40px;background-position:-310px -153px;margin-bottom: 20px;}
+#about>p{text-align: left; line-height: 22px}
+#aboutimgs>a{display: block;width: 150px;height: 75px;background-position: -287px -59px;}
+#creators>h4{font-weight: normal;text-align: center;}
+#creators>a{display: block;height: 73px;width: 73px;display: inline-block; margin: 0 0 0 52px;background-position: -441px -0px;}
+#creators>#twjoa{background-position: -441px -76px;}
+dl,#pager li a:hover,#pager li a.currentpage{
+           -moz-box-shadow: 0px 0px 3px #aa8800; /* FF3.5+ */
+ 		-webkit-box-shadow: 0px 0px 3px #aa8800; /* Saf3.0+, Chrome */
+		    	box-shadow: 0px 0px 3px #aa8800; /* Opera 10.5, IE 9.0 */}
+dt,dd{padding: 10px 15px}
+dt{background-color: #fff99b;font-size: 16px;overflow: hidden;margin-top:1px}
+dd{background-color: #fffadf;font-size: 14px;}
+dd .searchtext{margin:10px}
+dd .searchtext em{background-color: #fff99b;color:#ab2828;font-style: normal;font-weight: bold}
+dt .date{float: right}
+dt .categoria{float: left}
+.links{overflow: hidden;margin: 10px 0 0 0;}
+a{color:#ab2828}
+.links a{float:right;}
+.links a.more{float: left}
+.bigitem,.singleitem{margin-right:23px;}
+.warning{overflow: hidden;margin-right:23px;padding:15px 20px 5px;margin-bottom: 20px;background-color: #ffdddd;color:#ab2828;
+		border:1px solid #dd9999;
+     -moz-border-radius: 12px; /* FF1+ */
+  -webkit-border-radius: 12px; /* Saf3+, Chrome */
+          border-radius: 12px; /* Opera 10.5, IE 9 */
+}
+.warning li{margin-top:15px;margin-bottom: 10px;text-align: center;line-height: 35px;}
+.warning li.grid_1{color: black}
+.warning form{display: inline-block;}
+.warning li.omega a b{text-indent:-9999px;display:inline-block; height: 32px;width:32px;background: transparent url(../images/spr.jpg) -236px -59px no-repeat}
+ul#pager{text-align: right;margin-top:10px;list-style-position: inside;list-style-type: none;}
+ul#pager li{display:inline-block;margin:0;background-color:#fffadf;}
+ul#pager li a{display: block;padding:8px;text-decoration: none}
+ul#pager li a:hover,ul#pager li a.currentpage{background-color: #fff99b;}
+.singleitem .title{font-size: 28px;margin-bottom: 20px;line-height: 34px}
+.singleitem .categoria{font-size: 24px;}
+.singleitem .parrafo{margin:15px;font-size:18px;line-height: 24px}
+.singleitem .parrafo_2{text-align: right;margin-right: 15px}
+.singleitem .links{text-align: center}
+.singleitem .links a{line-height:46px;font-size: 30px;float: none;text-decoration: none;padding:8px;background-color:#fffadf;}
+.singleitem .links a:hover{background-color: #fff99b;}
+/*div,a, li{outline:1px solid gray}/**/
+
