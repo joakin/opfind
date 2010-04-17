@@ -17,6 +17,11 @@
 				<div class="warning">
 					#{bundle.newslettersubs}
 					<ul>
+					
+					<ui:fragment renderer="#{empty listCivilJobs.luceneSearch}">
+						No hay resultados
+					</ui:fragment>
+					
 						<li class="grid_12 alpha">
 						#{bundle.newslettersubmail}
 						<h:form>
