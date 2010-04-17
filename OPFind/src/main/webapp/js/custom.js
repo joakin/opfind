@@ -1,4 +1,6 @@
  $(document).ready(function() {
+     $("input.textinput").tinyTips('orange',$(".searchhelp").html());
+
     var texto=$(".searchterms").html();
     if(texto && texto!="")
     {

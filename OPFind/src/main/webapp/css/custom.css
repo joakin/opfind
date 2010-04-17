@@ -2,7 +2,7 @@ body{background:white url(../images/headbg.jpg) left -1px repeat-x;}
 body,input{font-family: Georgia,Times,"Times New Roman";font-size: 19px;}
 #wrapper{background: white url(../images/bg.jpg) top left no-repeat;overflow: hidden;}
 #header{height:160px}
-#header>h1>a,#header>h2>a{/**/text-indent: -9999px;/**/position:absolute;top:0;left:10;height:150px;width:360px;display: block}
+#header>h1>a,#header>h2>a{/**/text-indent: -9999px;/**/position:absolute;top:0;left:10px;height:150px;width:360px;display: block}
 #header>h2>a{left:370px;width:570px;}
 .busca{height:160px;position: relative;}
 .busca>input.textinput{position:absolute;top:53px;left:50px;height:68px;width:670px;font-size:50px;text-align: center;color:#ccc;border:none;background-color:transparent;background-image: none;}
@@ -53,9 +53,7 @@ a{color:#ab2828}
   -webkit-border-radius: 12px; /* Saf3+, Chrome */
           border-radius: 12px; /* Opera 10.5, IE 9 */
 }
-
 .warning a{color:#28ab28;}
-
 .error{
     border:1px solid #dd9999;background-color: #ffdddd;color:#ab2828;
 }
@@ -78,5 +76,8 @@ ul.pager li a:hover,ul.pager li.currentpage{background-color: #fff99b;}
 .singleitem .links a:hover{background-color: #fff99b;}
 .historylink{margin-bottom: 15px;margin-top: 15px;padding:15px 0;display: block;text-align: center}
 .historylink:hover{background-color: #fffadf;}
-/*div,a, li{outline:1px solid gray}/**/
-
+.orangeTip						{ font-size:14px; line-height:18px;}
+.orangeTip .content				{ width: 510px; padding: 10px;color:#881100; border: 6px solid #f9bd4e; -moz-border-radius: 5px; -webkit-border-radius: 5px; background: #fbe3aa; }
+.orangeTip .content p           {padding:10px}
+.orangeTip .bottom				{ height: 14px; background: url(../images/notch-orange.png) top center no-repeat; }
+.searchhelp{display:none}
