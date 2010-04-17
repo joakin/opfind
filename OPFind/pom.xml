@@ -106,7 +106,15 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.eaio.uuid</groupId>
+			<artifactId>uuid</artifactId>
+			<version>3.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+				
 		<!-- ========== Test ========== -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -126,6 +134,6 @@
 			<version>1.8.0.7</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 	</dependencies>
 </project>
