@@ -21,7 +21,7 @@
 		
 		<!-- <property name="hibernate.search.default.directory_provider">org.hibernate.search.store.RAMDirectoryProvider</property>--> 
 		<property name="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</property>
-		<property name="hibernate.search.default.indexBase">/home/sorack/OPFind/indexes/</property>
+		<property name="hibernate.search.default.indexBase">/Users/jkn/Documents/opfindworkspace/opfindindexes</property>
 		
 		<mapping class="es.opfind.domain.CivilJob"/>
 		<mapping class="es.opfind.domain.Institution"/>
