@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.faces.context.FacesContext;
+import javax.faces.el.ValueBinding;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -28,6 +31,9 @@ import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Resolution;
+
+import es.opfind.controller.civilJob.ListCivilJobs;
+import es.opfind.util.StringUtils;
 
 @Entity
 @Indexed
@@ -145,6 +151,38 @@ public class CivilJob implements Serializable {
 	public void setNum(String num) {
 		this.num = num;
 	}
+
+	public String getFoundText() {
+		
+		
+		// Esto es una ñapa tremenda
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		ValueBinding binding = context.getApplication().createValueBinding("#{listCivilJobs}");
+		ListCivilJobs civilJobs = (ListCivilJobs) binding.getValue(context);
+		
+		//Si no existe en search es que nos lo estan pasando por parametro
+		String search = "";
+		if (civilJobs.getSearch() != null)
+			search = StringUtils.buildLuceneAndQuery(civilJobs.getSearch());
+		else {
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+			if (request.getParameter("search") != null && !request.getParameter("search").equals("")) {
+				search = request.getParameter("search"); 
+			}
+			
+		}
+		
+		return getFoundText(search);
+	
+	}
+	
+	
+	
+	public String getFoundText(String search){
+		return StringUtils.getSummary(search, fullHtml);
+	}
+
 
 	public Date getBolDate() {
 		return bolDate;

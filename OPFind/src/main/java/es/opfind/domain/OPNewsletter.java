@@ -18,14 +18,14 @@ public class OPNewsletter implements Serializable {
 	@Column(name = "opnewsletter_id")
 	private String id;
 	
-	@Column(unique = true, nullable = false)
 	private String email;
 	
 	private Date lastSendDate;
-
-	private Boolean search;
 	
 	private String searchText;
+	
+	@Column(unique = true, nullable = false)
+	private String uuid;
 	
 	public String getId() {
 		return id;
@@ -51,13 +51,6 @@ public class OPNewsletter implements Serializable {
 		this.lastSendDate = lastSendDate;
 	}
 
-	public Boolean getSearch() {
-		return search;
-	}
-
-	public void setSearch(Boolean search) {
-		this.search = search;
-	}
 
 	public String getSearchText() {
 		return searchText;
@@ -66,5 +59,14 @@ public class OPNewsletter implements Serializable {
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
 	}
-	 
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	
 }
