@@ -7,7 +7,7 @@
 	<groupId>es.opfind</groupId>
 	<artifactId>opfind</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>OPFind</name>
 	<url>http://www.opfind.org</url>
