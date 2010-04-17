@@ -29,7 +29,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/opfind" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="root" />
 	</bean>
 
 	<!--
@@ -55,30 +55,39 @@
 			</property>
 		</bean>
 
-		<!--
-			Start Quartz scheduler <bean id="CrawlerTask"
-			class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-			<property name="targetObject" ref="OpCrawler" /> <property
-			name="targetMethod" value="storeCivilJobs" /> <property
-			name="concurrent" value="false" /> </bean> <bean id="cronTrigger"
-			class="org.springframework.scheduling.quartz.CronTriggerBean">
-			<property name="jobDetail" ref="CrawlerTask" /> <property
-			name="cronExpression" value="0 0 5 * * ?" /> </bean> <bean
-			id="simpleTrigger"
-			class="org.springframework.scheduling.quartz.SimpleTriggerBean">
-			<property name="jobDetail" ref="CrawlerTask" /> <property
-			name="repeatInterval" value="60000" /> </bean> <bean
-			id="schedulerFactoryBean"
-			class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-			<property name="triggers"> <list> <ref bean="simpleTrigger" /> <ref
-			bean="cronTrigger" /> </list> </property> </bean>
-		-->
+		
+		<!-- 	Start Quartz scheduler  --> 
+		
+		<bean id="CrawlerTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="OpCrawler" /> 
+			<property name="targetMethod" value="storeCivilJobs" /> 
+			<property name="concurrent" value="false" /> 
+		</bean>
+
+		<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="CrawlerTask" /> 
+			<property name="cronExpression" value="0 0 5 * * ?" /> 
+		</bean> 
+		
+		<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+			<property name="jobDetail" ref="CrawlerTask" /> 
+			<property name="repeatInterval" value="60000" /> 
+		</bean> 
+		
+		<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+			<property name="triggers"> 
+				<list> 
+					<!--  <ref bean="simpleTrigger" /> --> 
+					<ref bean="cronTrigger" /> 
+				</list> 
+			</property>
+		</bean>
+		
 		<!-- End Quartz scheduler -->
 
 		<bean id="OpCrawler" class="es.opfind.service.crawler.OpCrawler" />
 
-		<bean id="transacctionManager"
-			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<bean id="transacctionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 			<property name="sessionFactory" ref="sessionFactory" />
 		</bean>
 	</beans>

@@ -188,10 +188,11 @@ public class OpCrawler implements Serializable {
 		for (Entry<String, String> entry: lis.entrySet()) {
 			try {
 				CivilJob job = extractCivilJob(getDom4jDocument(new URL(BASE_DOMAIN + entry.getValue())),entry.getKey());
-				if (job != null)
+				if (job != null){
 					job.setNewsletter(newsletter);
 					job.setBolDate(newsletter.getBolDate());
 					civilJobs.add(job);
+				}
 			} catch (MalformedURLException e) {
 				log.error(e);
 			}
