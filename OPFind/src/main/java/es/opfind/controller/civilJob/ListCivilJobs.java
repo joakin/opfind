@@ -38,6 +38,8 @@ public class ListCivilJobs implements Serializable {
 		return civilJobMgr.getCivilJobs();
 	}
 
+	
+	
 	public String getReIndex() {
 
 		List<CivilJob> civilJobs = civilJobMgr.getCivilJobs();
@@ -97,6 +99,20 @@ public class ListCivilJobs implements Serializable {
 		return search;
 	}
 
+	public String getHighSearch(){
+		HttpServletRequest request = (HttpServletRequest) this.getFacesContext().getExternalContext().getRequest();
+		
+		if (request.getParameter("search") != null && !request.getParameter("search").equals("")) 
+			return request.getParameter("search");
+		
+		if ( search != null && !search.equals(""))
+			return StringUtils.buildLuceneAndQuery(search);
+		
+		return "";
+		
+		 
+	}
+	
 	public String getShareUrl(){
 		
 		HttpServletRequest request = (HttpServletRequest) this.getFacesContext().getExternalContext().getRequest();
