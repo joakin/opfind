@@ -18,7 +18,7 @@
 					#{bundle.newslettersubs}
 					<ul>
 					
-					<ui:fragment renderer="#{empty listCivilJobs.luceneSearch}">
+					<ui:fragment rendered="#{empty listCivilJobs.luceneSearch}">
 						No hay resultados
 					</ui:fragment>
 					
@@ -46,7 +46,11 @@
 		<h:form>		
 		<h:commandLink action="index"  styleClass="historylink">
 						#{bundle.back}
-		</h:commandLink>	
+		</h:commandLink>
+
+		<ui:fragment rendered="#{! empty listCivilJobs.luceneSearch}">
+            <div class="searchterms" style="display:none;visibility:hidden;">#{listCivilJobs.highSearch}</div>
+		</ui:fragment>
 				<dl class="bigitem">
 					<t:dataList 
 						id="myList" 
