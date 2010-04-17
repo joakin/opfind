@@ -14,13 +14,16 @@
 			<ui:include src="/includes/searchForm.xhtml"></ui:include>
 			
 			<div class="grid_20 push_1">
+
+
+            <ui:fragment rendered="#{empty listCivilJobs.luceneSearch}">
+                <div class="error warning">No hay resultados</div>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{! empty listCivilJobs.luceneSearch}">
 				<div class="warning">
 					#{bundle.newslettersubs}
 					<ul>
-					
-					<ui:fragment rendered="#{empty listCivilJobs.luceneSearch}">
-						No hay resultados
-					</ui:fragment>
 					
 						<li class="grid_12 alpha">
 						#{bundle.newslettersubmail}
@@ -42,15 +45,14 @@
 						</li>
 					</ul>
 				</div>
-			
-		<h:form>		
+
+		<h:form>
 		<h:commandLink action="index"  styleClass="historylink">
 						#{bundle.back}
 		</h:commandLink>
 
-		<ui:fragment rendered="#{! empty listCivilJobs.luceneSearch}">
+
             <div class="searchterms" style="display:none;visibility:hidden;">#{listCivilJobs.highSearch}</div>
-		</ui:fragment>
 				<dl class="bigitem">
 					<t:dataList 
 						id="myList" 
@@ -101,6 +103,7 @@
 						#{bundle.back}
 				</h:commandLink>	
 			</h:form>
+            </ui:fragment>
 			</div>
 			
 			<div class="grid_20 push_1">
