@@ -1,0 +1,20 @@
+<f:subview id="share" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	
+    <f:loadBundle basename="i18n.LocalizationResources" var="bundle"/>
+    
+		<h3>Compártenos</h3>
+		<ul>
+			<li><a href="http://www.facebook.com/share.php?u=#{listCivilJobs.shareUrl};" title="Facebook" id="btfacebook">Por facebook</a></li>
+			<li><a href="mailto:email@address.com?subject=OPfind - Encuentra tus oposiciones" title="Email" id="btmail">Por email</a></li>
+			<li><a href="http://www.stumbleupon.com/submit?url=#{listCivilJobs.shareUrl};" title="Stumble Upon" id="btstumble">Stumble upon this</a></li>
+			<li><a href="http://twitter.com/home?status=#{listCivilJobs.shareUrl};" title="Twitter" id="bttwitter">Tweet this</a></li>
+			<li><a href="http://www.google.com/buzz/post?url=#{listCivilJobs.shareUrl};" title="Google Buzz" id="btbuzz">Buzz this</a></li>
+			<li><a href="http://delicious.com/save?url=#{listCivilJobs.shareUrl};" title="Delicious" id="btdelicious">Share on Delicious</a></li>
+		</ul>
+</f:subview>
+				

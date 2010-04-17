@@ -1,0 +1,82 @@
+	<ui:composition template="/templates/template.xhtml"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:t="http://myfaces.apache.org/tomahawk">
+
+		<f:loadBundle basename="i18n.LocalizationResources" var="bundle" />
+
+		<ui:define name="content">
+
+			#{listCivilJobs.resetSearch}
+
+			<div class="grid_22 push_1" id="content">
+
+			<ui:include src="/includes/searchForm.xhtml"></ui:include>
+			
+			<div class="grid_11 push_1 alpha">
+			<h3 id="ultconv">#{bundle.lastciviljobs}</h3>
+
+			<dl class="smallitem">
+				<h:outputText value="#{bunle.notlastciviljobs}"
+					rendered="#{empty listCivilJobs.lastCivilJobs}" />
+
+				<t:dataList id="myList" var="job"
+					value="#{listCivilJobs.lastCivilJobs}" layout="ordered"
+					rowIndexVar="loop">
+
+					<dt>
+					<div class="categoria">#{job.category}</div>
+					<div class="date"><h:outputText
+						value="#{job.newsletter.bolDate}">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					</h:outputText></div>
+					</dt>
+					<dd>
+					<p class="title">#{job.description}</p>
+					<div class="links">
+						<h:form>
+							<h:commandLink action="viewCivilJob"
+								actionListener="#{viewCivilJob.view}" styleClass="more">
+								<f:attribute name="civilJob_id" value="#{job.id}" />
+								<h:outputText escape="false" value="#{bundle.moreinfo}" />
+							</h:commandLink>
+						</h:form> 
+						<a href="#{job.url}">#{bundle.see} #{job.num}</a></div>
+					</dd>
+
+				</t:dataList>
+
+
+			</dl>
+			</div>
+			<div class="grid_8 push_2 omega">
+			
+			<div id="share">
+				<ui:include src="/includes/share.xhtml"></ui:include>
+			</div>
+			
+			<h:form>
+				<div id="subscribe">
+					<h:commandLink action="#{listCivilJobs.forwardLastSearch}">#{bundle.subscribe}</h:commandLink>
+				</div>
+			</h:form>
+			
+			<div id="about">
+			<h3>Acerca de</h3>
+			<p>OPfind es una iniciativa que surge a través de abredatos.es,
+			un concurso para la creación de utilidades que mediante el manejo de
+			información pública sean de utilidad para el ciudadano</p>
+			</div>
+			<div id="aboutimgs"><a href="http://abredatos.es">Abredatos.es
+			- Yo participo en el desafío abredatos</a>
+			<div id="creators">
+			<h4>Contacta con nosotros</h4>
+			<a id="twjoa" href="http://twitter.com/joannava">Joan Navarrete</a> <a
+				href="http://twitter.com/joakin">Joaquín Oltra</a></div>
+			</div>
+			</div>
+			</div>
+		</ui:define>
+	</ui:composition>

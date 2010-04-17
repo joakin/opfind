@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="es.opfind" />
+
+	<aop:aspectj-autoproxy />
+
+	<tx:annotation-driven transaction-manager="transacctionManager" />
+
+	<!--
+		| Local DataSource that works in any environment | Note that it is not
+		intended for production | You sholud use Commons DBCP BasicDataSource
+		as alternative or C3P0 ComboPooledDataSource as best alternative | If
+		you are running insie an Application Server, better use a JNDI
+		DataSource (see below)
+	-->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/opfind" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<!--
+		| JNDI DataSource for J2EE environments (if you are running inside an
+		Application Server) <bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean"> <property
+		name="jndiName" value="${jndi.name}"/> </bean>
+	-->
+
+
+		<!--
+			| Hibernate SessionFactory. | hibernate.cfg.xml could specify
+			connection's configuration, but it is overridden here by datasource
+			property. | This is better because is easier to change the
+			datasource, and you can reuse it in more places.
+		-->
+		<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+			<property name="configLocation">
+				<value>classpath:hibernate.cfg.xml</value>
+			</property>
+		</bean>
+
+		<!--
+			Start Quartz scheduler <bean id="CrawlerTask"
+			class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="OpCrawler" /> <property
+			name="targetMethod" value="storeCivilJobs" /> <property
+			name="concurrent" value="false" /> </bean> <bean id="cronTrigger"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="CrawlerTask" /> <property
+			name="cronExpression" value="0 0 5 * * ?" /> </bean> <bean
+			id="simpleTrigger"
+			class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+			<property name="jobDetail" ref="CrawlerTask" /> <property
+			name="repeatInterval" value="60000" /> </bean> <bean
+			id="schedulerFactoryBean"
+			class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+			<property name="triggers"> <list> <ref bean="simpleTrigger" /> <ref
+			bean="cronTrigger" /> </list> </property> </bean>
+		-->
+		<!-- End Quartz scheduler -->
+
+		<bean id="OpCrawler" class="es.opfind.service.crawler.OpCrawler" />
+
+		<bean id="transacctionManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+	</beans>

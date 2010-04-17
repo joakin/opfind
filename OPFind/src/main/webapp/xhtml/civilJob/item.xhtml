@@ -1,0 +1,79 @@
+<ui:composition template="/templates/template.xhtml" 
+				xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:ui="http://java.sun.com/jsf/facelets" 
+				xmlns:h="http://java.sun.com/jsf/html" 
+				xmlns:f="http://java.sun.com/jsf/core" 
+				xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	<f:loadBundle basename="i18n.LocalizationResources" var="bundle"/>		
+	 
+	 <ui:define name="content">
+	 
+	 <div class="grid_22 push_1" id="content">
+			
+			<ui:include src="/includes/searchForm.xhtml"></ui:include>
+			
+			<div class="grid_20 push_1">
+			<h:form>
+						<h:commandLink action="#{viewCivilJob.back}" styleClass="historylink">
+							#{bundle.back}
+						</h:commandLink>
+					</h:form>	
+				<dl class="singleitem">
+					<dt>
+						<div class="categoria">#{viewCivilJob.civilJob.category}</div>
+						<div class="date">
+							<h:outputText value="#{viewCivilJob.civilJob.newsletter.bolDate}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
+					</dt>
+					<dd>
+						<p class="title">#{viewCivilJob.civilJob.description}</p>
+						
+						<f:verbatim>
+							#{viewCivilJob.civilJob.fullHtml}
+						</f:verbatim>
+
+						<div class="links">
+							<a href="#{viewCivilJob.civilJob.url}">#{bundle.see} #{viewCivilJob.civilJob.num}</a>
+						</div>
+					</dd>
+					
+					
+					
+				</dl>
+				<h:form>
+						<h:commandLink action="#{viewCivilJob.back}" styleClass="historylink">
+							#{bundle.back}
+						</h:commandLink>
+					</h:form>	
+			</div>
+			<div class="grid_20 push_1">
+				<div class="grid_8 alpha suffix_1 prefix_1" id="about">
+					<h3>Acerca de</h3>
+					<p>
+					OPfind es una iniciativa que surge a través de abredatos.es, un concurso para la creación de utilidades que mediante el manejo de información pública sean de utilidad para el ciudadano
+					</p>
+					<div id="aboutimgs">
+						<a href="http://abredatos.es">Abredatos.es - Yo participo en el desafío abredatos</a>
+					</div>
+				</div>
+				<div class="grid_8 omega suffix_1 prefix_1" id="share">
+				
+					<ui:include src="/includes/share.xhtml"></ui:include>
+				
+					<div id="creators">
+							<h4>Contacta con nosotros</h4>
+							<a id="twjoa" href="http://twitter.com/joannava">Joan Navarrete</a>
+							<a href="http://twitter.com/joakin">Joaquín Oltra</a>
+					</div>
+				</div>
+				
+
+
+			</div>
+		</div>
+	 </ui:define>
+	
+</ui:composition>

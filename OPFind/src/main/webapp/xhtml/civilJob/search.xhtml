@@ -1,0 +1,123 @@
+<ui:composition template="/templates/template.xhtml" 
+				xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:ui="http://java.sun.com/jsf/facelets" 
+				xmlns:h="http://java.sun.com/jsf/html" 
+				xmlns:f="http://java.sun.com/jsf/core" 
+				xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	<f:loadBundle basename="i18n.LocalizationResources" var="bundle"/>		
+	 
+	 <ui:define name="content">
+	 
+	 <div class="grid_22 push_1" id="content">
+			
+			<ui:include src="/includes/searchForm.xhtml"></ui:include>
+			
+			<div class="grid_20 push_1">
+				<div class="warning">
+					#{bundle.newslettersubs}
+					<ul>
+						<li class="grid_12 alpha">
+						#{bundle.newslettersubmail}
+						<h:form>
+							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
+								 <f:validator validatorId="opfind.uniqueSubscriptionValidator"/>
+							</t:inputText>
+							<h:message for="email" />
+							<h:commandButton value="#{bundle.subscribe}" action="#{editOPNewsletter.subscribe}" />
+						</h:form>
+						</li>
+						<li class="grid_1">ó</li>
+						<li class="grid_5 omega">
+							<h:form>
+								<h:commandLink action="#{listCivilJobs.forwardRssSearch}">
+									#{bundle.rsssubscribe} <b>#{bundle.here}</b>
+								</h:commandLink>
+							</h:form>
+						</li>
+					</ul>
+				</div>
+			
+		<h:form>		
+		<h:commandLink action="index"  styleClass="historylink">
+						#{bundle.back}
+		</h:commandLink>	
+				<dl class="bigitem">
+					<t:dataList 
+						id="myList" 
+						var="job"
+						value="#{listCivilJobs.luceneSearch}" 
+						layout="ordered"
+						rowIndexVar="loop"
+						rows="10"
+						first="0">
+					
+							<dt>
+								<div class="categoria">#{job.category}</div>
+								<div class="date">
+									<h:outputText value="#{job.newsletter.bolDate}">
+										<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</div>
+							</dt>
+							<dd>
+								<p class="title">#{job.description}</p>
+								<p class="searchtext">
+										#{job.foundText}
+								</p>
+								<div class="links">
+									<h:commandLink action="viewCivilJob"
+										actionListener="#{viewCivilJob.view}" styleClass="more">
+										<f:attribute name="civilJob_id" value="#{job.id}" />
+										<h:outputText escape="false" value="#{bundle.moreinfo}" />
+									</h:commandLink>
+								<a href="#{job.url}">#{bundle.see} #{job.num}</a></div>
+							</dd>
+					</t:dataList>
+				</dl>
+				
+				<t:dataScroller id="scroll"
+                    for="myList"
+                    pageCountVar="pageCount"
+                    pageIndexVar="pageIndex"
+                    styleClass="grid_19 pager"
+                    paginator="true"
+                    paginatorMaxPages="9"
+                    layout="list"
+                    paginatorActiveColumnClass="currentpage">
+            		    <f:facet name="first">«</f:facet>
+         				<f:facet name="last">»</f:facet>
+				</t:dataScroller>
+				<h:commandLink action="index"  styleClass="historylink">
+						#{bundle.back}
+				</h:commandLink>	
+			</h:form>
+			</div>
+			
+			<div class="grid_20 push_1">
+				<div class="grid_8 alpha suffix_1 prefix_1" id="about">
+					<h3>Acerca de</h3>
+					<p>
+					OPfind es una iniciativa que surge a través de abredatos.es, un concurso para la creación de utilidades que mediante el manejo de información pública sean de utilidad para el ciudadano
+					</p>
+					<div id="aboutimgs">
+						<a href="http://abredatos.es">Abredatos.es - Yo participo en el desafío abredatos</a>
+					</div>
+				</div>
+				<div class="grid_8 omega suffix_1 prefix_1" id="share">
+				
+					<ui:include src="/includes/share.xhtml"></ui:include>
+				
+					<div id="creators">
+							<h4>Contacta con nosotros</h4>
+							<a id="twjoa" href="http://twitter.com/joannava">Joan Navarrete</a>
+							<a href="http://twitter.com/joakin">Joaquín Oltra</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	 </ui:define>
+	 
+	 
+</ui:composition>

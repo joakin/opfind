@@ -1,0 +1,15 @@
+<f:subview id="searchForm" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	
+    <f:loadBundle basename="i18n.LocalizationResources" var="bundle"/>
+	
+	<h:form styleClass="busca">
+		<h:inputText styleClass="textinput"  value="#{listCivilJobs.search}"/>
+		<h:commandButton action="search" actionListener="#{listCivilJobs.setLuceneSearch}" styleClass="submitbt" />
+	</h:form>
+
+</f:subview>
