@@ -17,7 +17,7 @@
 
 
             <ui:fragment rendered="#{empty listCivilJobs.luceneSearch}">
-                <div class="error warning">No hay resultados</div>
+                <div class="error warning">#{bundle.noresults}</div>
             </ui:fragment>
 
             <ui:fragment rendered="#{! empty listCivilJobs.luceneSearch}">
@@ -25,8 +25,16 @@
 					#{bundle.newslettersubs}
 					<ul>
 					
-						<li class="grid_12 alpha">
-						#{bundle.newslettersubmail}
+						<li class="grid_9 alpha">
+                        <!-- PASO 1 -->
+                        <h:form>
+                            <h:commandLink action="#{listCivilJobs.forwardRssSearch}">
+                                #{bundle.newslettersubmail}
+                            </h:commandLink>
+                        </h:form>
+                        <!-- PASO 2 -->
+                        <br/>Introduce tu email y recibe las novedades:<br/>
+                        <div class="warning error smallwarning">
 						<h:form>
 							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
 								 <f:validator validatorId="opfind.uniqueSubscriptionValidator"/>
@@ -34,12 +42,13 @@
 							<h:message for="email" />
 							<h:commandButton value="#{bundle.subscribe}" action="#{editOPNewsletter.subscribe}" />
 						</h:form>
+                        <br/>#{bundle.mailvalidationerror}
+                       </div>
 						</li>
-						<li class="grid_1">ó</li>
-						<li class="grid_5 omega">
+						<li class="grid_9 omega">
 							<h:form>
 								<h:commandLink action="#{listCivilJobs.forwardRssSearch}">
-									#{bundle.rsssubscribe} <b>#{bundle.here}</b>
+									#{bundle.rsssubscribe}
 								</h:commandLink>
 							</h:form>
 						</li>
@@ -47,11 +56,6 @@
 				</div>
 
 		<h:form>
-		<h:commandLink action="index"  styleClass="historylink">
-						#{bundle.back}
-		</h:commandLink>
-
-
             <div class="searchterms" style="display:none;visibility:hidden;">#{listCivilJobs.highSearch}</div>
 				<dl class="bigitem">
 					<t:dataList 

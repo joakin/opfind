@@ -14,7 +14,7 @@ h3,#subscribe>a{margin:30px auto;}
 #creators>h4,#aboutimgs>a,#creators>a{margin:20px auto;}
 #ultconv{width:426px;height: 43px;}
 #share>h3{width: 277px; height: 60px;background-position:0 -96px;margin-bottom: 15px;}
-#share>	{list-style-type: none;list-style-position: inside;}
+#share>ul	{list-style-type: none;list-style-position: inside;}
 #share li{display: inline-block;margin:0 0 0 11px;}
 #share a{display: block;width: 35px;height: 35px;background-position:0 -160px;}
 a#btmail{background-position:0 -160px;}
@@ -59,10 +59,12 @@ a{color:#ab2828}
 .error{
     border:1px solid #dd9999;background-color: #ffdddd;color:#ab2828;
 }
-.warning li{margin-top:15px;margin-bottom: 10px;text-align: center;line-height: 35px;}
+.warning li{margin-top:10px;text-align: center;line-height: 35px; padding-top:128px;}
 .warning li.grid_1{color: black}
 .warning form{display: inline-block;}
-.warning li.omega a b{text-indent:-9999px;display:inline-block; height: 32px;width:32px;background: transparent url(../images/spr.jpg) -236px -59px no-repeat}
+.warning li.alpha{background:transparent url(../images/mail.png) top center no-repeat;}
+.warning li.omega{background:transparent url(../images/rss.png) top center no-repeat;}
+.smallwarning{margin-bottom:0px;margin-right:0px;padding:15px 0 0 0;}
 ul.pager{text-align: right;margin-top:10px;list-style-position: inside;list-style-type: none;}
 ul.pager li{display:inline-block;margin:0;background-color:#fffadf;}
 ul.pager li a{display: block;padding:8px;text-decoration: none}
