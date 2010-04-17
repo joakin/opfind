@@ -6,23 +6,27 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 		
-		!-- With Spring, the DataSource's properties will be overriden by datasource bean -->
+		<!-- With Spring, the DataSource's properties will be overriden by datasource bean -->
 		<!-- This configuration it's only usefull to Hibernate Tools Console -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.password">root</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/opfind</property>
 		<!-- /This configuration it's only usefull to Hibernate Tools Console -->
 
-		<!--  <property name="hibernate.hbm2ddl.auto">create</property> -->
+		<!--<property name="hibernate.hbm2ddl.auto">create</property>-->
 		<property name="hibernate.show_sql">true</property>
 		
-		<!--  <property name="hibernate.search.default.directory_provider">org.hibernate.search.store.RAMDirectoryProvider</property> -->
+		<!-- <property name="hibernate.search.default.directory_provider">org.hibernate.search.store.RAMDirectoryProvider</property>--> 
 		<property name="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</property>
-		<property name="hibernate.search.default.indexBase">/home/sorack/OPFind/indexes</property>
+		<property name="hibernate.search.default.indexBase">/home/sorack/OPFind/indexes/</property>
 		
-		<mapping class="com.autentia.hibernate.search.Book"/>
+		<mapping class="es.opfind.domain.CivilJob"/>
+		<mapping class="es.opfind.domain.Institution"/>
+		<mapping class="es.opfind.domain.Newsletter"/>
+		<mapping class="es.opfind.domain.OPNewsletter"/>
+		
 	</session-factory>
 </hibernate-configuration>
