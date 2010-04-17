@@ -32,8 +32,8 @@
                                 #{bundle.newslettersubmail}
                             </h:commandLink>
                         </h:form>
-                        <!-- PASO 2 -->
-                        <br/>Introduce tu email y recibe las novedades:<br/>
+                        <!-- PASO 2 --> <hr/> <!-- borrar este <hr> -->
+                       Introduce tu email y recibe las novedades:<br/>
                         <div class="warning error smallwarning">
 						<h:form>
 							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
@@ -44,6 +44,10 @@
 						</h:form>
                         <br/>#{bundle.mailvalidationerror}
                        </div>
+                       <!-- PASO 3 --> <hr/> <!-- borrar este <hr> -->
+                         <strong>Enhorabuena</strong><br/>
+                         <p>Apartir de ahora cuando se publiquen nuevas noticias relacionadas se las enviaremos
+                         al correo electronico.</p>
 						</li>
 						<li class="grid_9 omega">
 							<h:form>
