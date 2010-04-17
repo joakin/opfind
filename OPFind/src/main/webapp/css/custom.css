@@ -30,7 +30,7 @@ a#btdelicious{background-position:-252px -160px;}
 #creators>h4{font-weight: normal;text-align: center;}
 #creators>a{display: block;height: 73px;width: 73px;display: inline-block; margin: 0 0 0 52px;background-position: -441px -0px;}
 #creators>#twjoa{background-position: -441px -76px;}
-dl, .pager li a:hover, .pager li a.currentpage{
+dl, .smallitem, .pager li a:hover, .pager li a.currentpage{
            -moz-box-shadow: 0px 0px 3px #aa8800; /* FF3.5+ */
  		-webkit-box-shadow: 0px 0px 3px #aa8800; /* Saf3.0+, Chrome */
 		    	box-shadow: 0px 0px 3px #aa8800; /* Opera 10.5, IE 9.0 */}

@@ -25,7 +25,7 @@
 				<t:dataList id="myList" var="job"
 					value="#{listCivilJobs.lastCivilJobs}" layout="ordered"
 					rowIndexVar="loop">
-
+                    <div>
 					<dt>
 					<div class="categoria">#{job.category}</div>
 					<div class="date"><h:outputText
@@ -45,7 +45,7 @@
 						</h:form> 
 						<a href="#{job.url}">#{bundle.see} #{job.num}</a></div>
 					</dd>
-
+                    </div>
 				</t:dataList>
 
 
