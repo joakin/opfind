@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,6 +43,7 @@ import es.opfind.domain.Newsletter;
 import es.opfind.service.CivilJobMgr;
 import es.opfind.service.InstitutionMgr;
 import es.opfind.service.NewsletterMgr;
+import es.opfind.util.DateUtils;
 import es.opfind.util.XMLUtils;
 
 /**
@@ -53,7 +55,7 @@ import es.opfind.util.XMLUtils;
 @Service
 public class OpCrawler implements Serializable {
 
-	private static final Log log = LogFactory.getLog(GenericDao.class);
+	private static final Log log = LogFactory.getLog(OpCrawler.class);
 	private static final String BASE_DOMAIN = "http://www.boe.es/";
 	private Institution institution;
 	private Newsletter newsletter;
@@ -81,18 +83,32 @@ public class OpCrawler implements Serializable {
 			// Initialize institution
 			this.institution = initInstitution();
 
-			Document mainDocument = getDom4jDocument(getBOEUrl());
-			this.newsletter = extractNewsletter(mainDocument);
-			this.newsletter.setInstitution(institution);
-			
-			Map<String,String> lis = extractLis(mainDocument);
-			
-			Set<CivilJob> civilJobs = extractCivilJobs(lis);
-			
-			this.newsletter.setCivilJobs(civilJobs);
-			
-			newsletterMgr.persist(newsletter);
-			
+			// recorremos la ultima semana por si acaso
+			for (int i = 0; i < 7; i++) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(date);
+				calendar.add(Calendar.DAY_OF_YEAR, -i);
+
+				date = calendar.getTime();
+				if (!wasCrawled(date)) {
+					try{
+					Document mainDocument = XMLUtils.getDom4jDocument(getBOEUrl());
+					this.newsletter = extractNewsletter(mainDocument);
+					this.newsletter.setInstitution(institution);
+
+					Map<String, String> lis = extractLis(mainDocument);
+
+					Set<CivilJob> civilJobs = extractCivilJobs(lis);
+
+					this.newsletter.setCivilJobs(civilJobs);
+
+					newsletterMgr.persist(newsletter);
+					}catch (Exception e) {
+						log.error(e);
+					}
+				}
+
+			}
 
 		} catch (Exception e) {
 			log.error(e);
@@ -106,9 +122,9 @@ public class OpCrawler implements Serializable {
 
 		if (!newsletters.isEmpty()) {
 			lastDate = newsletters.get(0).getBolDate();
-			if (currentDate.equals(lastDate))
+			if (DateUtils.setTimeToMidnight(currentDate).equals(DateUtils.setTimeToMidnight(lastDate)))
 				return true;
-			else if (currentDate.after(lastDate))
+			else if (DateUtils.setTimeToMidnight(currentDate).after(DateUtils.setTimeToMidnight(lastDate)))
 				return false;
 		}
 
@@ -116,10 +132,10 @@ public class OpCrawler implements Serializable {
 	}
 
 	private Institution initInstitution() {
-		
+
 		List<Institution> institutions = institutionMgr.getInstitutionByName("Boletín Oficial del Estado");
-		
-		if (institutions.isEmpty()){
+
+		if (institutions.isEmpty()) {
 			institution = institutionMgr.newInstitution();
 			institution.setName("Boletín Oficial del Estado");
 			institutionMgr.persist(institution);
@@ -127,38 +143,6 @@ public class OpCrawler implements Serializable {
 		}
 
 		return institutions.get(0);
-	}
-
-	/**
-	 * Obtain a Dom4j document by an url
-	 * 
-	 * @param url
-	 * @return
-	 */
-	private Document getDom4jDocument(URL url) {
-		Document document = null;
-		try {
-			XMLReader r = new Parser();
-
-			URLConnection conn = url.openConnection();
-
-			((Parser) r).setFeature("http://xml.org/sax/features/namespace-prefixes", true);
-			SAXReader reader = new SAXReader(r);
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-			document = reader.read(br);
-
-		} catch (SAXNotSupportedException e) {
-			log.error(e);
-		} catch (IOException e) {
-			log.error(e);
-		} catch (SAXNotRecognizedException e) {
-			log.error(e);
-		} catch (DocumentException e) {
-			log.error(e);
-		}
-		return document;
 	}
 
 	/**
@@ -181,14 +165,15 @@ public class OpCrawler implements Serializable {
 
 	}
 
-	private Set<CivilJob> extractCivilJobs(Map<String,String> lis){
-		
+	private Set<CivilJob> extractCivilJobs(Map<String, String> lis) {
+
 		Set<CivilJob> civilJobs = new HashSet<CivilJob>();
-		
-		for (Entry<String, String> entry: lis.entrySet()) {
+
+		for (Entry<String, String> entry : lis.entrySet()) {
 			try {
-				CivilJob job = extractCivilJob(getDom4jDocument(new URL(BASE_DOMAIN + entry.getValue())),entry.getKey());
-				if (job != null){
+				CivilJob job = extractCivilJob(XMLUtils.getDom4jDocument(new URL(BASE_DOMAIN + entry.getValue())),
+						entry.getKey());
+				if (job != null) {
 					job.setNewsletter(newsletter);
 					job.setBolDate(newsletter.getBolDate());
 					civilJobs.add(job);
@@ -197,17 +182,17 @@ public class OpCrawler implements Serializable {
 				log.error(e);
 			}
 		}
-		
+
 		return civilJobs;
 	}
-	
+
 	/**
 	 * 
 	 * @param document
 	 * @return
 	 * @throws MalformedURLException
 	 */
-	private CivilJob extractCivilJob(Document document,String num) throws MalformedURLException {
+	private CivilJob extractCivilJob(Document document, String num) throws MalformedURLException {
 
 		Node node = document.selectSingleNode("//html:div[@id='DOdoc']/html:h3/html:span");
 		if (node != null) {
@@ -223,8 +208,9 @@ public class OpCrawler implements Serializable {
 					Node fullText = node.selectSingleNode("//html:div[@id='textoxslt']");
 					Node category = node.selectSingleNode("//html:div[@id='DOdoc']/html:h4");
 
-					return civilJobMgr.newCivilJob(XMLUtils.getNodeText(description), BASE_DOMAIN + XMLUtils.getNodeAttributeText(
-							url, "href"), XMLUtils.writeNode(fullText), XMLUtils.getNodeText(category),num);
+					return civilJobMgr.newCivilJob(XMLUtils.getNodeText(description), BASE_DOMAIN
+							+ XMLUtils.getNodeAttributeText(url, "href"), XMLUtils.writeNode(fullText), XMLUtils
+							.getNodeText(category), num);
 				} catch (Exception e) {
 					log.error(e);
 				}
