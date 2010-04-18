@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.eaio.uuid.UUID;
 
 import es.opfind.dao.Dao;
+import es.opfind.domain.Newsletter;
 import es.opfind.domain.OPNewsletter;
 
 @Service
@@ -62,5 +63,11 @@ public class OPNewsletterMgr implements Serializable {
 	public void delete(OPNewsletter opNewsletter){
 		dao.delete(opNewsletter);
 	}
+
+	public List<OPNewsletter> getOPNewsletters() {
+		final List<OPNewsletter> list = dao.find(OPNewsletter.class);
+		return list;
+	}
+
 	
 }
