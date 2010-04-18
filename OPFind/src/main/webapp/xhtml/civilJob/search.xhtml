@@ -40,7 +40,7 @@
 							</t:inputText>
 							<h:commandButton value="#{bundle.subscribe}" action="#{editOPNewsletter.subscribe}" />
 							<br/>
-                            <t:message forceSpan="true" styleClass="warning error smallwarning" for="email"/>
+                            <t:message forceSpan="true" errorClass="warning error smallwarning"  for="email"/>
 
 						</t:div>
                         <t:div rendered="#{editOPNewsletter.status == 3}">
