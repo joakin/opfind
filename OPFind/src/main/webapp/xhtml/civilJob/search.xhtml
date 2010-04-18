@@ -38,7 +38,7 @@
                         </t:div>
                         <t:div rendered="#{editOPNewsletter.status == 2}">
                         	Introduce tu email y recibe las novedades:<br/>
-							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
+							<t:inputText size="15" required="true" errorStyle="error" forceId="true" id="email" value="#{editOPNewsletter.mail}" name="email">
 								 <f:validator validatorId="opfind.uniqueSubscriptionValidator"/>
 							</t:inputText>
 							<h:commandButton value="#{bundle.subscribe}" actionListener="#{editOPNewsletter.subscribe}" />
