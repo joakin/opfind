@@ -258,6 +258,23 @@
 	</filter-mapping>
 
 
+
+	<filter>
+		<display-name>Ajax4jsf Filter</display-name>
+		<filter-name>Ajax4jsf</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Ajax4jsf</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	
+	
+	
 	<!-- Listener, to allow Jetty serving MyFaces apps -->
 	<listener>
 		<listener-class>
