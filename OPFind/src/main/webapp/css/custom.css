@@ -57,12 +57,12 @@ a{color:#ab2828}
 .error{
     border:1px solid #dd9999;background-color: #ffdddd;color:#ab2828;
 }
-.warning li{margin-top:10px;text-align: center;line-height: 35px; padding-top:128px;}
+.warning li{margin-top:10px;text-align: center;line-height: 35px;padding-top:20px;}
 .warning li.grid_1{color: black}
 .warning form{display: inline-block;}
-.warning li.alpha{background:transparent url(../images/mail.png) top center no-repeat;}
-.warning li.omega{background:transparent url(../images/rss.png) top center no-repeat;}
-.smallwarning{margin:15px 0 0 0;padding:0;}
+.warning .mailstep{padding-top:105px;background:transparent url(../images/mail.png) center -20px no-repeat;}
+.warning li.omega{padding-top:128px;background:transparent url(../images/rss.png) top center no-repeat;}
+.smallwarning{margin:15px 0 0 0;padding:0;display:block}
 ul.pager{text-align: right;margin-top:10px;list-style-position: inside;list-style-type: none;}
 ul.pager li{display:inline-block;margin:0;background-color:#fffadf;}
 ul.pager li a{display: block;padding:8px;text-decoration: none}
