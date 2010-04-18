@@ -104,7 +104,7 @@ public class OpCrawler implements Serializable {
 		List<Newsletter> newsletters = newsletterMgr.getNewslettersOrderByBolDate();
 		Date lastDate = null;
 
-		if (!newsletters.equals("")) {
+		if (!newsletters.isEmpty()) {
 			lastDate = newsletters.get(0).getBolDate();
 			if (currentDate.equals(lastDate))
 				return true;
@@ -119,7 +119,7 @@ public class OpCrawler implements Serializable {
 		
 		List<Institution> institutions = institutionMgr.getInstitutionByName("Boletín Oficial del Estado");
 		
-		if (institutions.equals("")){
+		if (institutions.isEmpty()){
 			institution = institutionMgr.newInstitution();
 			institution.setName("Boletín Oficial del Estado");
 			institutionMgr.persist(institution);

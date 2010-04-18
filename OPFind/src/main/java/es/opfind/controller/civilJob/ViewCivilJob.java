@@ -34,7 +34,7 @@ public class ViewCivilJob {
 		ValueBinding binding = context.getApplication().createValueBinding("#{listCivilJobs}");
 		ListCivilJobs civilJobs = (ListCivilJobs) binding.getValue(context);
 		
-		if ( civilJobs.getSearch()!= null && !civilJobs.getSearch().equals(""))
+		if ( civilJobs.getSearch()!= null && !civilJobs.getSearch().isEmpty())
 			return "search";
 		else
 			return "index";

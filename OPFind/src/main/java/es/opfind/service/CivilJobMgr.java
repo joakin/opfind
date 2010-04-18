@@ -79,7 +79,7 @@ public class CivilJobMgr {
 		DetachedCriteria criteria = DetachedCriteria.forClass(CivilJob.class);
 		criteria.add(Restrictions.eq("num", num));
 		final List<CivilJob> list = dao.findByCriteria(criteria);
-		if (!list.equals(""))
+		if (!list.isEmpty())
 			return list.get(0);
 		else
 			return null;
@@ -88,7 +88,7 @@ public class CivilJobMgr {
 	public List<CivilJob> getUpdatesByDateAndSearch(Date lastSendDate, String search) {
 		List<CivilJob> civilJobs = findByFullTextAndSortDate(search);
 
-		if ( civilJobs.equals(""))
+		if ( civilJobs.isEmpty())
 			return civilJobs;
 		
 		Integer index = binaryDateSearch(lastSendDate, civilJobs);

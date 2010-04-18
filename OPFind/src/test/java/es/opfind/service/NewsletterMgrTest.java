@@ -54,7 +54,7 @@ public class NewsletterMgrTest {
 	@Test
 	public void testGetNewslettersByNum(){
 		assertTrue(newsletterMgr.getNewslettersByNum("BOE-A-432-2224").get(0) != null);
-		assertTrue(newsletterMgr.getNewslettersByNum("BOE-A-432-9999").equals(""));
+		assertTrue(newsletterMgr.getNewslettersByNum("BOE-A-432-9999").isEmpty());
 	}
 	
 	public void createSomeNewsletter(){

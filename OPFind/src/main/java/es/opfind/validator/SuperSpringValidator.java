@@ -20,7 +20,7 @@ public class SuperSpringValidator implements Serializable {
 	
 	public Boolean validateUniqueSubscription(String email, String search) {
 		List<OPNewsletter> newsletters = opNewsletterMgr.getOPNewslettersByEmailAndSearchText(email, search);
-		if(newsletters.equals(""))
+		if(newsletters.isEmpty())
 			return true;
 		else 
 			return false;

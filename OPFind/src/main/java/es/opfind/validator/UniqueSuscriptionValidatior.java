@@ -20,7 +20,7 @@ public class UniqueSuscriptionValidatior implements Validator {
 		ListCivilJobs civilJobs = (ListCivilJobs) binding.getValue(context);
 
 		if (stringValue != null && !stringValue.equals(""))
-			if (civilJobs.getSearch() != null && !civilJobs.getSearch().equals("")) {
+			if (civilJobs.getSearch() != null && !civilJobs.getSearch().isEmpty()) {
 				binding = context.getApplication().createValueBinding("#{superSpringValidator}");
 				SuperSpringValidator springValidator = (SuperSpringValidator) binding.getValue(context);
 				Boolean validate = springValidator.validateUniqueSubscription(stringValue, StringUtils

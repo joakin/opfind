@@ -50,7 +50,7 @@ public class OPNewsletterMgr implements Serializable {
 		DetachedCriteria criteria = DetachedCriteria.forClass(OPNewsletter.class);
 		 criteria.add(Restrictions.eq("uuid", uuid));
 		 final List<OPNewsletter> list = dao.findByCriteria(criteria);
-		 if(!list.equals(""))
+		 if(!list.isEmpty())
 			 return list.get(0);
 		 return null;
 	}

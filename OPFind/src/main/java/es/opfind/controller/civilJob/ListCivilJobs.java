@@ -89,7 +89,7 @@ public class ListCivilJobs implements Serializable {
 
 	public Set<CivilJob> getLastCivilJobs() {
 		List<Newsletter> newsletters = newsletterMgr.getNewslettersOrderByBolDate();
-		if (!newsletters.equals("")) {
+		if (!newsletters.isEmpty()) {
 			return newsletters.get(0).getCivilJobs();
 		}
 		return new HashSet<CivilJob>();

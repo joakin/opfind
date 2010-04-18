@@ -51,7 +51,7 @@ public class RssCivilJobs {
 		List<Newsletter> newsletters = newsletterMgr.getNewslettersOrderByBolDate();
 		
 		Set<CivilJob> civilJobs = new HashSet<CivilJob>();
-		if ( !newsletters.equals("")){
+		if ( !newsletters.isEmpty()){
 			civilJobs = newsletters.get(0).getCivilJobs();
 		}
 		

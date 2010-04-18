@@ -18,7 +18,7 @@ import es.opfind.service.OPNewsletterMgr;
 import es.opfind.util.StringUtils;
 
 @Controller
-@Scope("request")
+@Scope("session")
 public class EditOPNewsletter {
 
 	@Resource
@@ -30,6 +30,7 @@ public class EditOPNewsletter {
 	// TODO: tenemos que validar este mail, como required, como bien formado y
 	// como unico en base de datos
 	private String mail;
+	private Integer status = 1;
 
 	public String subscribe() {
 
@@ -41,6 +42,7 @@ public class EditOPNewsletter {
 
 		opNewsletterMgr.persist(opNewsletter);
 
+		status = 3;
 		return "subscribed";
 	}
 
@@ -69,4 +71,17 @@ public class EditOPNewsletter {
 		return FacesContext.getCurrentInstance();
 	}
 
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
+	public String changeSecondStatus(){
+		status = 2;
+		return "success";
+	}
 }
