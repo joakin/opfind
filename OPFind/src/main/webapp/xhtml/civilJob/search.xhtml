@@ -27,28 +27,29 @@
 					<ul>
 					
 						<li class="grid_9 alpha">
-                        <!-- PASO 1     BORRAR LAS ETIQUETAS <HR> AL AJAXIZAR-->
                         <h:form>
-                            <h:commandLink action="#{listCivilJobs.forwardRssSearch}">
+                        <t:div rendered="#{editOPNewsletter.status == 1}">
+                            <h:commandLink action="#{editOPNewsletter.changeSecondStatus}">
                                 #{bundle.newslettersubmail}
                             </h:commandLink>
-                        </h:form>
-                        <!-- PASO 2 --> <hr/> <!-- borrar este <hr> -->
-                       Introduce tu email y recibe las novedades:<br/>
-                        <div class="warning error smallwarning">
-						<h:form>
+                        </t:div>
+                        <t:div styleClass="warning error smallwarning" rendered="#{editOPNewsletter.status == 2}">
+                        	Introduce tu email y recibe las novedades:<br/>
 							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
 								 <f:validator validatorId="opfind.uniqueSubscriptionValidator"/>
 							</t:inputText>
-							<h:message for="email" />
 							<h:commandButton value="#{bundle.subscribe}" action="#{editOPNewsletter.subscribe}" />
-						</h:form>
-                        <br/>#{bundle.mailvalidationerror}
-                       </div>
-                       <!-- PASO 3 --> <hr/> <!-- borrar este <hr> -->
-                         <strong>Enhorabuena</strong><br/>
-                         <p>Apartir de ahora cuando se publiquen nuevas noticias relacionadas se las enviaremos
-                         al correo electronico.</p>
+							<br/>
+							<h:message for="email" />
+						</t:div>
+                        <t:div rendered="#{editOPNewsletter.status == 3}">
+                         	<strong>Enhorabuena</strong><br/>
+                         	<p>Apartir de ahora cuando se publiquen nuevas noticias relacionadas se las enviaremos
+                         	al correo electronico.</p>
+                        </t:div>
+                        
+                        </h:form>
+                        
 						</li>
 						<li class="grid_9 omega">
 							<h:form>
