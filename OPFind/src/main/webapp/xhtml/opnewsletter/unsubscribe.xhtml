@@ -9,16 +9,47 @@
 	<f:loadBundle basename="i18n.LocalizationResources" var="bundle"/>		
 	
 	<ui:define name="content">
-		#{editOPNewsletter.unSubscribe}"
-	
 
-		TE HAS QUITADO DE LA LISTA, SI
-		
-		<h:form>
-			<h:commandLink action="index">
-				#{bundle.back}
-			</h:commandLink>	
-		</h:form>
-	</ui:define> 
-	
+	 <div class="grid_22 push_1" id="content">
+
+			<ui:include src="/includes/searchForm.xhtml"></ui:include>
+
+			<div class="grid_20 push_1">
+                <div class="warning warnomg grid_10 alpha">
+                Ya no estas suscrito al newsletter
+                 <ui:fragment rendered="#{! empty editOPNewsletter.unSubscribe}">
+                    <br/>de <em>#{editOPNewsletter.unSubscribe}</em>
+                 </ui:fragment>
+                </div>
+                <div class="grid_5 prefix_4 omega arrowbg">
+                Por que no pruebas a hacer otra busqueda?
+                </div>
+            </div>
+
+			<div class="grid_20 push_1">
+				<div class="grid_8 alpha suffix_1 prefix_1" id="about">
+					<h3>Acerca de</h3>
+					<p>
+					OPfind es una iniciativa que surge a través de abredatos.es, un concurso para la creación de utilidades que mediante el manejo de información pública sean de utilidad para el ciudadano
+					</p>
+					<div id="aboutimgs">
+						<a href="http://abredatos.es">Abredatos.es - Yo participo en el desafío abredatos</a>
+					</div>
+				</div>
+				<div class="grid_8 omega suffix_1 prefix_1" id="share">
+
+					<ui:include src="/includes/share.xhtml"></ui:include>
+
+					<div id="creators">
+							<h4>Contacta con nosotros</h4>
+							<a id="twjoa" href="http://twitter.com/joannava">Joan Navarrete</a>
+							<a href="http://twitter.com/joakin">Joaquín Oltra</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	 </ui:define>
+
+
 </ui:composition>

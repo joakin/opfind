@@ -54,14 +54,15 @@ public class EditOPNewsletter {
 	public String getUnSubscribe() {
 
 		HttpServletRequest request = (HttpServletRequest) this.getFacesContext().getExternalContext().getRequest();
+        String searchText="";
 		if (request.getParameter("uuid") != null && !request.getParameter("uuid").equals("")) {
 			OPNewsletter opNewsletter = opNewsletterMgr.getOPNewsletterByUuid(request.getParameter("uuid"));
 			if (opNewsletter != null) {
-
+                searchText=opNewsletter.getSearchText();
 				opNewsletterMgr.delete(opNewsletter);
 			}
 		}
-		return "";
+		return searchText;
 	}
 
 	public String getMail() {

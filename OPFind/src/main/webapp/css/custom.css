@@ -53,6 +53,7 @@ a{color:#ab2828}
   -webkit-border-radius: 12px; /* Saf3+, Chrome */
           border-radius: 12px; /* Opera 10.5, IE 9 */
 }
+.warnomg{margin-right:0px;}
 .warning a{color:#28ab28;}
 .error{
     border:1px solid #dd9999;background-color: #ffdddd;color:#ab2828;
@@ -81,3 +82,4 @@ ul.pager li a:hover,ul.pager li.currentpage{background-color: #fff99b;}
 .orangeTip .content p           {padding:10px}
 .orangeTip .bottom				{ height: 14px; background: url(../images/notch-orange.png) top center no-repeat; }
 .searchhelp{display:none}
+.arrowbg{background:transparent url(../images/arrow.jpg) 20px -2px no-repeat;padding-top:15px;min-height:80px;line-height:32px;}
