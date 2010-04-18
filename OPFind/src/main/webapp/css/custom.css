@@ -1,6 +1,6 @@
 body{background:white url(../images/headbg.jpg) left -1px repeat-x;}
 body,input{font-family: Georgia,Times,"Times New Roman";font-size: 19px;}
-#wrapper{background: white url(../images/bg.jpg) top left no-repeat;overflow: hidden;}
+#wrapper{background: white url(../images/bg.jpg) top left no-repeat;overflow: hidden;margin-bottom:30px;}
 #header{height:160px}
 #header>h1>a,#header>h2>a{/**/text-indent: -9999px;/**/position:absolute;top:0;left:10px;height:150px;width:360px;display: block}
 #header>h2>a{left:370px;width:570px;}
