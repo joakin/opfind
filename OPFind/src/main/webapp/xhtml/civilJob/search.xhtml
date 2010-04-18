@@ -27,9 +27,12 @@
 					<ul>
 					
 						<li class="grid_9 alpha">
+						<t:saveState value="#{editOPNewsletter.status}"/>
+						
                         <h:form>
                         <t:div styleClass="mailstep" rendered="#{editOPNewsletter.status == 1}">
-                            <h:commandLink action="#{editOPNewsletter.changeSecondStatus}">
+                            <h:commandLink actionListener="#{editOPNewsletter.changeSecondStatus}">
+                            <f:attribute name="next_sub_status" value="2" />
                                 #{bundle.newslettersubmail}
                             </h:commandLink>
                         </t:div>
@@ -38,7 +41,8 @@
 							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
 								 <f:validator validatorId="opfind.uniqueSubscriptionValidator"/>
 							</t:inputText>
-							<h:commandButton value="#{bundle.subscribe}" action="#{editOPNewsletter.subscribe}" />
+							<h:commandButton value="#{bundle.subscribe}" actionListener="#{editOPNewsletter.subscribe}" />
+							<f:attribute name="next_sub_status" value="2" />
 							<br/>
                             <t:message forceSpan="true" errorClass="warning error smallwarning"  for="email"/>
 

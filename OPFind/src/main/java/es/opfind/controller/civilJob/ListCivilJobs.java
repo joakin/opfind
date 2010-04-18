@@ -151,13 +151,25 @@ public class ListCivilJobs implements Serializable {
 	public List<CivilJob> getLuceneSearch() {
 
 		HttpServletRequest request = (HttpServletRequest) this.getFacesContext().getExternalContext().getRequest();
-
+		
+		//Es importante para mejorar el rendimiento
+		List<CivilJob>  civilJobs = (List<CivilJob>) request.getAttribute("searchResults");
+		if ( civilJobs != null)
+			return civilJobs;
+		
 		if (request.getParameter("search") != null && !request.getParameter("search").equals("")) {
-			return civilJobMgr.findByFullTextAndSortDate(request.getParameter("search"));
+			List<CivilJob> civilJobs2 = null;
+			civilJobs2 = civilJobMgr.findByFullTextAndSortDate(request.getParameter("search"));
+			request.setAttribute("searchResults",civilJobs2);
+			return civilJobs2;
 		}
 
-		if (search != null && !search.equals(""))
-			return civilJobMgr.findByFullTextAndSortDate(StringUtils.buildLuceneAndQuery(search));
+		if (search != null && !search.equals("")){
+			List<CivilJob> civilJobs3 = null;
+			civilJobs3 = civilJobMgr.findByFullTextAndSortDate(StringUtils.buildLuceneAndQuery(search));
+			request.setAttribute("searchResults",civilJobs3);
+			return civilJobs3;
+		}
 		else
 			return new ArrayList<CivilJob>();
 	}

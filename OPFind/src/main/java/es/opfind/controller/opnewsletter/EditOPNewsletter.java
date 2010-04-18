@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
@@ -18,7 +19,7 @@ import es.opfind.service.OPNewsletterMgr;
 import es.opfind.util.StringUtils;
 
 @Controller
-@Scope("session")
+@Scope("request")
 public class EditOPNewsletter {
 
 	@Resource
@@ -37,7 +38,7 @@ public class EditOPNewsletter {
 		status = 1;
 		return "";
 	}
-	public String subscribe() {
+	public void subscribe(ActionEvent event){
 
 		ValueBinding binding = getFacesContext().getApplication().createValueBinding("#{listCivilJobs}");
 		ListCivilJobs civilJobs = (ListCivilJobs) binding.getValue(getFacesContext());
@@ -48,7 +49,6 @@ public class EditOPNewsletter {
 		opNewsletterMgr.persist(opNewsletter);
 
 		status = 3;
-		return "subscribed";
 	}
 
 	public String getUnSubscribe() {
@@ -85,8 +85,7 @@ public class EditOPNewsletter {
 		this.status = status;
 	}
 	
-	public String changeSecondStatus(){
+	public void changeSecondStatus(ActionEvent event){
 		status = 2;
-		return "success";
 	}
 }
