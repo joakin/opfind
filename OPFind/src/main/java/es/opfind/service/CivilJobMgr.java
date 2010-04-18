@@ -1,5 +1,6 @@
 package es.opfind.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,6 +94,9 @@ public class CivilJobMgr {
 		
 		Integer index = binaryDateSearch(lastSendDate, civilJobs);
 		
+		if (index == 0)
+			return new ArrayList<CivilJob>();
+		
 		//Sigo recorriendo el array por si el binarysearch a caido alejado
 		int i = 0;
 		
@@ -110,21 +114,26 @@ public class CivilJobMgr {
 		Integer min = 0;
 		Integer max = civilJobs.size() - 1;
 		Integer mid = 0;
+		//Buscamos el indice mas cercano al final del array
+		Integer maxAux = 0;
 		do {
 			mid = (min + max) / 2;
+			
 			if (DateUtils.setTimeToMidnight(civilJobs.get(mid).getBolDate()).before(
-					DateUtils.setTimeToMidnight(lastSendDate)))
+					DateUtils.setTimeToMidnight(lastSendDate))){
 				max = mid - 1;
-			else
+				
+			}
+			else{
 				min = mid + 1;
+				maxAux = mid;
+			}
+				
 
 		} while (!DateUtils.setTimeToMidnight(civilJobs.get(mid).getBolDate()).equals(
 				DateUtils.setTimeToMidnight(lastSendDate))
 				&& min < max);
 
-		if (min >= max)
-			mid = -1;
-
-		return mid;
+		return maxAux;
 	}
 }
