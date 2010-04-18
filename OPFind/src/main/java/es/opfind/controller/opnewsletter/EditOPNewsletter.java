@@ -32,6 +32,11 @@ public class EditOPNewsletter {
 	private String mail;
 	private Integer status = 1;
 
+	
+	public String getResetStatus(){
+		status = 0;
+		return "";
+	}
 	public String subscribe() {
 
 		ValueBinding binding = getFacesContext().getApplication().createValueBinding("#{listCivilJobs}");
