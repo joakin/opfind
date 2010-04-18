@@ -1,7 +1,10 @@
 package es.opfind.controller.civilJob;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -9,8 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
