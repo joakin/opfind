@@ -34,7 +34,7 @@ public class EditOPNewsletter {
 
 	
 	public String getResetStatus(){
-		status = 0;
+		status = 1;
 		return "";
 	}
 	public String subscribe() {
