@@ -60,5 +60,10 @@
 		<validator-id>opfind.uniqueSubscriptionValidator</validator-id>
 		<validator-class>es.opfind.validator.UniqueSuscriptionValidatior</validator-class>
 	</validator>
+	
+	<validator>
+		<validator-id>opfind.emailValidator</validator-id>
+		<validator-class>es.opfind.validator.EmailValidator</validator-class>
+	</validator>
     
 </faces-config>
