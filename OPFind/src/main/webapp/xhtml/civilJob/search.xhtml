@@ -33,19 +33,18 @@
                                 #{bundle.newslettersubmail}
                             </h:commandLink>
                         </t:div>
-                        <t:div styleClass="warning error smallwarning" rendered="#{editOPNewsletter.status == 2}">
+                        <t:div rendered="#{editOPNewsletter.status == 2}">
                         	Introduce tu email y recibe las novedades:<br/>
 							<t:inputText size="15" required="true" errorStyle="error" id="email" value="#{editOPNewsletter.mail}" name="email">
 								 <f:validator validatorId="opfind.uniqueSubscriptionValidator"/>
 							</t:inputText>
 							<h:commandButton value="#{bundle.subscribe}" action="#{editOPNewsletter.subscribe}" />
 							<br/>
-							<h:message for="email" />
-							<h:messages showDetail="false" showSummary="false">
-								<div>
-								AFSDAAFADSFSFDSAFASLKFJASIOFJIOASJFIOADSJFASIODFJASPOFIJASJFPOASIJF
+                            <h:message for="email">
+                                <div class="warning error smallwarning">
+                                    #{bundle.mailvalidationerror}
 								</div>
-							</h:messages>
+                            </h:message>
 						</t:div>
                         <t:div rendered="#{editOPNewsletter.status == 3}">
                          	<strong>Enhorabuena</strong><br/>
