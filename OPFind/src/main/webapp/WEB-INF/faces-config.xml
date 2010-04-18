@@ -12,7 +12,6 @@
             <supported-locale>es</supported-locale>  
         </locale-config>  
     	<message-bundle>i18n.LocalizationResources</message-bundle>    
-		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
 		
 		<variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>  
 		
